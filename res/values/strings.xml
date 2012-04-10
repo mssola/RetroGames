@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<string name="app_name">RetroGames</string>
+	<string name="games_tab">Games</string>
+	<string name="stats_tab">Statistics</string>
+	<string name="hist_tab">History</string>
+	<string name="settings_tab">Settings</string>
+</resources>
