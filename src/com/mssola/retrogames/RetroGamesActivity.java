@@ -1,3 +1,21 @@
+/*
+ * Copyright 2012 Miquel Sabaté <mikisabate@gmail.com>
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU Library General Public License as
+ * published by the Free Software Foundation; either version 3 of the
+ * License, or (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+
 package com.mssola.retrogames;
 
 import android.app.TabActivity;
@@ -10,10 +28,16 @@ import android.widget.TabHost;
 import android.widget.TextView;
 
 
+/**
+ * The main activity.
+ */
 public class RetroGamesActivity extends TabActivity
 {
-	private TabHost tabHost;
-	
+    /**
+     * The tab host for this activity.
+     */
+    private TabHost tabHost;
+
     @Override
     public void onCreate(Bundle savedInstanceState)
     {
@@ -21,30 +45,38 @@ public class RetroGamesActivity extends TabActivity
         setContentView(R.layout.main);
         setTabs();
     }
-    
+
+    /**
+     * Initialize the tabs with its activities.
+     */
     private void setTabs()
     {
-		tabHost = getTabHost();
-		addTab(R.string.games_tab, GamesActivity.class);
-		addTab(R.string.stats_tab, StatisticsActivity.class);
-		addTab(R.string.hist_tab, HistoryActivity.class);
-		addTab(R.string.settings_tab, SettingsActivity.class);
-	}
-	
-	private void addTab(int labelId, Class<?> activity)
-	{
-		Intent intent = new Intent(this, activity);
-		TabHost.TabSpec spec = tabHost.newTabSpec("tab" + labelId);		
-		
-		View tabIndicator = LayoutInflater.from(this).inflate(R.layout.tab_indicator, getTabWidget(), false);
-		
-		TextView title = (TextView) tabIndicator.findViewById(R.id.title);
-		title.setText(labelId);
-		ImageView icon = (ImageView) tabIndicator.findViewById(R.id.icon);
-		icon.setImageResource(R.drawable.tab_info);
-		
-		spec.setIndicator(tabIndicator);
-		spec.setContent(intent);
-		tabHost.addTab(spec);
-	}
+        tabHost = getTabHost();
+        addTab(R.string.games_tab, GamesActivity.class);
+        addTab(R.string.stats_tab, StatisticsActivity.class);
+        addTab(R.string.hist_tab, HistoryActivity.class);
+        addTab(R.string.settings_tab, SettingsActivity.class);
+    }
+
+    /**
+     * Add a new tab to our tabHost.
+     *
+     * @param labelId The id of the tab.
+     * @param activity The Activity to be set for this tab.
+     */
+    private void addTab(int labelId, Class<?> activity)
+    {
+        Intent intent = new Intent(this, activity);
+        TabHost.TabSpec spec = tabHost.newTabSpec("tab" + labelId);
+        View tabIndicator = LayoutInflater.from(this).inflate(R.layout.tab_indicator, getTabWidget(), false);
+
+        TextView title = (TextView) tabIndicator.findViewById(R.id.title);
+        title.setText(labelId);
+        ImageView icon = (ImageView) tabIndicator.findViewById(R.id.icon);
+        icon.setImageResource(R.drawable.tab_info);
+
+        spec.setIndicator(tabIndicator);
+        spec.setContent(intent);
+        tabHost.addTab(spec);
+    }
 }
