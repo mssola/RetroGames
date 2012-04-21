@@ -13,6 +13,3 @@
 			android:layout_below="@android:id/tabs"></FrameLayout>
 	</RelativeLayout>
 </TabHost>
-
-<!--			android:tabStripLeft="@drawable/tab_bottom_left"-->
-<!--			android:tabStripRight="@drawable/tab_bottom_right"-->

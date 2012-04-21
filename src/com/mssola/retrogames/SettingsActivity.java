@@ -20,21 +20,88 @@ package com.mssola.retrogames;
 
 import android.app.Activity;
 import android.os.Bundle;
-import android.widget.TextView;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
+import android.widget.RadioGroup;
+import android.widget.Spinner;
 
 
 /**
- * The Activity for the History tab.
+ * The Activity for the Settings tab.
  */
-public class SettingsActivity extends Activity
+public class SettingsActivity extends Activity 
+implements RadioGroup.OnCheckedChangeListener, CompoundButton.OnCheckedChangeListener, Spinner.OnItemSelectedListener
 {
     @Override
     public void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.settings);
 
-        TextView textview = new TextView(this);
-        textview.setText("This is the Settings tab");
-        setContentView(textview);
+        RadioGroup level = (RadioGroup) findViewById(R.id.radioGroup1);
+        level.setOnCheckedChangeListener(this);
+
+        CheckBox attacked = (CheckBox) findViewById(R.id.checkBox1);
+        attacked.setOnCheckedChangeListener(this);
+
+        CheckBox invader = (CheckBox) findViewById(R.id.checkBox2);
+        invader.setOnCheckedChangeListener(this);
+
+        CheckBox sudden = (CheckBox) findViewById(R.id.checkBox3);
+        sudden.setOnCheckedChangeListener(this);
+
+        Spinner spinner = (Spinner) findViewById(R.id.spinner1);
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(
+                this, R.array.number_balls, android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner.setAdapter(adapter);
+        spinner.setOnItemSelectedListener(this);
     }
+
+    public void onCheckedChanged(RadioGroup group, int id)
+    {
+    	RetroGamesApplication app = (RetroGamesApplication) getApplicationContext();
+    	switch (id) {
+    	case R.id.radio0:
+    		app.setLevel(1);
+    		break;
+    	case R.id.radio1:
+    		app.setLevel(2);
+    		break;
+    	case R.id.radio2:
+    		app.setLevel(3);
+    		break;
+    	}
+    }
+    
+    public void onCheckedChanged(CompoundButton bttn, boolean isChecked)
+    {
+    	RetroGamesApplication app = (RetroGamesApplication) getApplicationContext();
+    	switch (bttn.getId()) {
+    	case R.id.checkBox1:
+    		app.setAttacked(isChecked);
+    		break;
+    	case R.id.checkBox2:
+    		app.setInvader(isChecked);
+    		break;
+    	case R.id.checkBox3:
+    		app.setAttacked(isChecked);
+    		break;
+    	}
+    }
+    
+    public void onItemSelected(AdapterView<?> parent, View view, int pos, long id)
+    {
+    	RetroGamesApplication app = (RetroGamesApplication) getApplicationContext();
+    	app.setBalls(pos + 1);
+    }
+    
+    public void onNothingSelected(AdapterView<?> parent)
+    {
+        // Do nothing.
+    }
+
 }
