@@ -119,5 +119,4 @@ implements RadioGroup.OnCheckedChangeListener, CompoundButton.OnCheckedChangeLis
     {
         /* There's nothing to do here. */
     }
-
 }
