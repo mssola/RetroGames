@@ -32,9 +32,12 @@ import android.widget.Spinner;
 /**
  * The Activity for the Settings tab.
  */
-public class SettingsActivity extends Activity 
+public class SettingsActivity extends Activity
 implements RadioGroup.OnCheckedChangeListener, CompoundButton.OnCheckedChangeListener, Spinner.OnItemSelectedListener
 {
+    /**
+     * On create setup all the listeners.
+     */
     @Override
     public void onCreate(Bundle savedInstanceState)
     {
@@ -61,47 +64,60 @@ implements RadioGroup.OnCheckedChangeListener, CompoundButton.OnCheckedChangeLis
         spinner.setOnItemSelectedListener(this);
     }
 
+    /**
+     * onCheckedChanged event for the RadioGroup item. It sets the level of
+     * difficulty of the game.
+     */
     public void onCheckedChanged(RadioGroup group, int id)
     {
-    	RetroGamesApplication app = (RetroGamesApplication) getApplicationContext();
-    	switch (id) {
-    	case R.id.radio0:
-    		app.setLevel(1);
-    		break;
-    	case R.id.radio1:
-    		app.setLevel(2);
-    		break;
-    	case R.id.radio2:
-    		app.setLevel(3);
-    		break;
-    	}
+        RetroGamesApplication app = (RetroGamesApplication) getApplicationContext();
+        switch (id) {
+        case R.id.radio0:
+            app.setLevel(1);
+            break;
+        case R.id.radio1:
+            app.setLevel(2);
+            break;
+        case R.id.radio2:
+            app.setLevel(3);
+            break;
+        }
     }
-    
+
+    /**
+     * onCheckedChanged event for the CompoundButton item. It sets some attributes.
+     */
     public void onCheckedChanged(CompoundButton bttn, boolean isChecked)
     {
-    	RetroGamesApplication app = (RetroGamesApplication) getApplicationContext();
-    	switch (bttn.getId()) {
-    	case R.id.checkBox1:
-    		app.setAttacked(isChecked);
-    		break;
-    	case R.id.checkBox2:
-    		app.setInvader(isChecked);
-    		break;
-    	case R.id.checkBox3:
-    		app.setAttacked(isChecked);
-    		break;
-    	}
+        RetroGamesApplication app = (RetroGamesApplication) getApplicationContext();
+        switch (bttn.getId()) {
+        case R.id.checkBox1:
+            app.setAttacked(isChecked);
+            break;
+        case R.id.checkBox2:
+            app.setInvader(isChecked);
+            break;
+        case R.id.checkBox3:
+            app.setAttacked(isChecked);
+            break;
+        }
     }
-    
+
+    /**
+     * onItemSelected event for the Spinner item. It sets how many balls to be used.
+     */
     public void onItemSelected(AdapterView<?> parent, View view, int pos, long id)
     {
-    	RetroGamesApplication app = (RetroGamesApplication) getApplicationContext();
-    	app.setBalls(pos + 1);
+        RetroGamesApplication app = (RetroGamesApplication) getApplicationContext();
+        app.setBalls(pos + 1);
     }
-    
+
+    /**
+     * We're forced to implement this method, do nothing.
+     */
     public void onNothingSelected(AdapterView<?> parent)
     {
-        // Do nothing.
+        /* There's nothing to do here. */
     }
 
 }

@@ -17,74 +17,133 @@
 
 
 package com.mssola.retrogames;
+
 import android.app.Application;
 
 
+/**
+ * The application for this Android app. It extends the android.app.Application
+ * class in order to implement global settings.
+ */
 public class RetroGamesApplication extends Application
 {
-	private int level;
-	private int balls;
-	private boolean sudden;
-	private boolean attacked;
-	private boolean invader;
-	
-	public RetroGamesApplication() 
-	{
-		super();
-		this.level = 1;
-		this.balls = 1;
-		this.sudden = false;
-		this.attacked = false;
-		this.invader = false;
-	}
-	
-	public int getLevel()
-	{
-		return this.level;
-	}
-	
-	public void setLevel(int level)
-	{
-		this.level = level;
-	}
+    /**
+     * Stores the level of difficulty.
+     */
+    private int level;
 
-	public int getBalls()
-	{
-		return this.balls;
-	}
-	
-	public void setBalls(int balls)
-	{
-		this.balls = balls;
-	}
+    /**
+     * How many balls in the Pong game will be used.
+     */
+    private int balls;
 
-	public boolean getSudden()
-	{
-		return this.sudden;
-	}
-	
-	public void setSudden(boolean sudden)
-	{
-		this.sudden = sudden;
-	}
-	
-	public boolean getAttacked()
-	{
-		return this.attacked;
-	}
-	
-	public void setAttacked(boolean attacked)
-	{
-		this.attacked = attacked;
-	}
-	
-	public boolean getInvader()
-	{
-		return this.invader;
-	}
-	
-	public void setInvader(boolean invader)
-	{
-		this.invader = invader;
-	}
+    /**
+     * Stores if the balls can suddenly change their directions in
+     * the Pong game.
+     */
+    private boolean sudden;
+
+    /**
+     * The invaders can shoot the user in the Space Invaders game.
+     */
+    private boolean attacked;
+
+    /**
+     * The user controls the invader team in the Space Invaders game.
+     */
+    private boolean invader;
+
+    /**
+     * Constructor.
+     * Sets the default values for the global settings.
+     */
+    public RetroGamesApplication()
+    {
+        super();
+        this.level = 1;
+        this.balls = 1;
+        this.sudden = false;
+        this.attacked = false;
+        this.invader = false;
+    }
+
+    /**
+     * @return the difficulty level.
+     */
+    public int getLevel()
+    {
+        return this.level;
+    }
+
+    /**
+     * @param level The new level of difficulty.
+     */
+    public void setLevel(int level)
+    {
+        this.level = level;
+    }
+
+    /**
+     * @return the balls being used.
+     */
+    public int getBalls()
+    {
+        return this.balls;
+    }
+
+    /**
+     * @param balls the number of balls to be used.
+     */
+    public void setBalls(int balls)
+    {
+        this.balls = balls;
+    }
+
+    /**
+     * @return if balls can change its directions all the sudden.
+     */
+    public boolean getSudden()
+    {
+        return this.sudden;
+    }
+
+    /**
+     * @param sudden set if balls can change its directions all the sudden.
+     */
+    public void setSudden(boolean sudden)
+    {
+        this.sudden = sudden;
+    }
+
+    /**
+     * @return if the invaders can shoot to the user.
+     */
+    public boolean getAttacked()
+    {
+        return this.attacked;
+    }
+
+    /**
+     * @param attacked set if the invaders can shoot to the user.
+     */
+    public void setAttacked(boolean attacked)
+    {
+        this.attacked = attacked;
+    }
+
+    /**
+     * @return if the user controls the invader team.
+     */
+    public boolean getInvader()
+    {
+        return this.invader;
+    }
+
+    /**
+     * @param invader set if the user controls the invader team.
+     */
+    public void setInvader(boolean invader)
+    {
+        this.invader = invader;
+    }
 }
