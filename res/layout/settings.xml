@@ -9,6 +9,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="5px"
+        android:layout_marginTop="20px"
         android:text="@string/level"
         android:textAppearance="?android:attr/textAppearanceLarge" />
 
@@ -21,25 +22,28 @@
 
         <RadioButton
             android:id="@+id/radio0"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginRight="5px"
+            android:layout_weight="1"
             android:checked="true"
             android:text="@string/easy" />
 
         <RadioButton
             android:id="@+id/radio1"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginBottom="20px"
             android:layout_marginRight="5px"
+            android:layout_weight="1"
             android:text="@string/medium" />
 
         <RadioButton
             android:id="@+id/radio2"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginBottom="20px"
+            android:layout_weight="1"
             android:text="@string/hard" />
     </RadioGroup>
 

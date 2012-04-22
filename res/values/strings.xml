@@ -1,21 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-	<string name="app_name">RetroGames</string>
-	<string name="games_tab">Games</string>
-	<string name="stats_tab">Statistics</string>
-	<string name="hist_tab">History</string>
-	<string name="settings_tab">Settings</string>
-	<string name="general_settings">General</string>
-	<string name="level">Game level</string>
-	<string name="easy">Easy</string>
-	<string name="medium">Medium</string>
-	<string name="hard">Hard</string>
-	<string name="about_p">About Pong</string>
-	<string name="number">Number of balls</string>
-	<string name="sudden">Sudden direction change</string>
-	<string name="about_i">About Space Invaders</string>
-	<string name="shooting">Invaders are shooting us!</string>
-	<string name="invader">Now you\'re the invader</string>
+    <color name="white">#FFFFFF</color>
+
+    <string name="app_name">RetroGames</string>
+    <string name="games_tab">Games</string>
+    <string name="stats_tab">Statistics</string>
+    <string name="hist_tab">History</string>
+    <string name="settings_tab">Settings</string>
+    <string name="general_settings">General</string>
+    <string name="level">Game level</string>
+    <string name="easy">Easy</string>
+    <string name="medium">Medium</string>
+    <string name="hard">Hard</string>
+    <string name="about_p">About Pong</string>
+    <string name="number">Number of balls</string>
+    <string name="sudden">Sudden direction change</string>
+    <string name="about_i">About Space Invaders</string>
+    <string name="shooting">Invaders are shooting us!</string>
+    <string name="invader">Now you\'re the invader</string>
     <string-array name="number_balls">
         <item>1</item>
         <item>2</item>
