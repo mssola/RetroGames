@@ -23,14 +23,17 @@ import android.os.Bundle;
 
 
 /**
- * The Activity for the Statistics tab.
+ * The Activity for the Pong History tab.
  */
-public class StatisticsActivity extends Activity
+public class PongHistoryActivity extends Activity
 {
+	/**
+	 * On create show the Pong History view. 
+	 */
     @Override
     public void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.statistics);
+        setContentView(R.layout.pong_history);
     }
 }

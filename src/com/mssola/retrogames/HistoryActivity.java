@@ -18,23 +18,25 @@
 
 package com.mssola.retrogames;
 
-import android.app.Activity;
 import android.os.Bundle;
-import android.widget.TextView;
 
 
 /**
  * The Activity for the History tab.
  */
-public class HistoryActivity extends Activity
+public class HistoryActivity extends RGTabActivity
 {
+	/**
+	 * On create setup the tabs from the bottom. 
+	 */
     @Override
     public void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.history);
 
-        TextView textview = new TextView(this);
-        textview.setText("This is the History tab");
-        setContentView(textview);
+        /* Add the Pong and Space Invaders tabs */
+        addTab(R.string.pong_tab, GamesActivity.class);
+        addTab(R.string.si_tab, StatisticsActivity.class);
     }
 }

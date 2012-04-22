@@ -1,12 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="app_name">RetroGames</string>
     <color name="white">#FFFFFF</color>
 
-    <string name="app_name">RetroGames</string>
     <string name="games_tab">Games</string>
     <string name="stats_tab">Statistics</string>
     <string name="hist_tab">History</string>
     <string name="settings_tab">Settings</string>
+    <string name="pong_tab">Pong</string>
+    <string name="si_tab">Space Invaders</string>
+
     <string name="general_settings">General</string>
     <string name="level">Game level</string>
     <string name="easy">Easy</string>

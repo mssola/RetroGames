@@ -23,14 +23,17 @@ import android.os.Bundle;
 
 
 /**
- * The Activity for the Statistics tab.
+ * The Activity for the Space Invaders tab.
  */
-public class StatisticsActivity extends Activity
+public class SIHistoryActivity extends Activity
 {
+	/**
+	 * On create show the Space Invaders History view. 
+	 */
     @Override
     public void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.statistics);
+        setContentView(R.layout.si_history);
     }
 }
