@@ -25,6 +25,10 @@
         <activity android:name=".StatisticsActivity"></activity>
         <activity android:name=".HistoryActivity"></activity>
         <activity android:name=".SettingsActivity"></activity>
+        <activity android:name=".PongHistoryActivity"></activity>
+        <activity android:name=".SIHistoryActivity"></activity>
+        <activity android:name=".PongStatsActivity"></activity>
+        <activity android:name=".SIStatsActivity"></activity>
     </application>
 
 </manifest>

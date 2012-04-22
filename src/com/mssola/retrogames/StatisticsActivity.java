@@ -18,19 +18,25 @@
 
 package com.mssola.retrogames;
 
-import android.app.Activity;
 import android.os.Bundle;
 
 
 /**
- * The Activity for the Statistics tab.
+ * The Activity for the History tab.
  */
-public class StatisticsActivity extends Activity
+public class StatisticsActivity extends RGTabActivity
 {
+	/**
+	 * On create setup the tabs from the bottom. 
+	 */
     @Override
     public void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.statistics);
+        setContentView(R.layout.history);
+
+        /* Add the Pong and Space Invaders tabs */
+        addTab(R.string.pong_tab, GamesActivity.class);
+        addTab(R.string.si_tab, StatisticsActivity.class);
     }
 }

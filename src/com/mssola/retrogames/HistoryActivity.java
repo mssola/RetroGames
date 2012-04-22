@@ -36,7 +36,7 @@ public class HistoryActivity extends RGTabActivity
         setContentView(R.layout.history);
 
         /* Add the Pong and Space Invaders tabs */
-        addTab(R.string.pong_tab, GamesActivity.class);
-        addTab(R.string.si_tab, StatisticsActivity.class);
+        addTab(R.string.pong_tab, PongHistoryActivity.class);
+        addTab(R.string.si_tab, SIHistoryActivity.class);
     }
 }
