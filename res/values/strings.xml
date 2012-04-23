@@ -26,4 +26,43 @@
         <item>2</item>
         <item>3</item>
     </string-array>
+    
+    <string name="eol">&lt;br />&lt;br /></string>
+    
+    <string name="first_pong">
+        Pong (marketed as PONG) is one of the earliest arcade video games, 
+        and is a tennis sports game featuring simple two-dimensional graphics. 
+        The game was originally manufactured by Atari Incorporated (Atari), who 
+        released it in 1972. &lt;a href="http://en.wikipedia.org/wiki/Allan_Alcorn">Allan Alcorn&lt;/a>
+        created Pong as a training exercise assigned to him by Atari co-founder 
+        &lt;a href="http://en.wikipedia.org/wiki/Nolan_Bushnell">Nolan Bushnell&lt;/a>. 
+        Bushnell based the idea on an electronic ping-pong game included in the 
+        &lt;a href="http://en.wikipedia.org/wiki/Magnavox_Odyssey">Magnavox Odyssey&lt;/a>, 
+        which later resulted in a lawsuit against Atari.
+    </string>
+    
+    <string name="second_pong">
+        After diving into the design of the Magnavox version, Alcorn went on to create his own design
+        based on hi knowledge of transistor-transistor logic. Feeling the original Magnavox\'s game was
+        too boring, Alcorn added features to give the game more appeal. He divided the paddle into eight segments 
+        to change the ball\'s angle of return. He also made the ball accelerate the more it was returned back 
+        and forth between paddles; missing the ball reset the speed. Another feature was that the in-game paddles 
+        were unable to reach the top of screen. This was caused by a simple circuit that had an inherent defect. 
+        Instead of dedicating time to fixing the defect, Alcorn decided it gave the game more difficulty and 
+        helped limit the time the game could be played.
+    </string>
+    
+    <string name="third_pong">
+        After months of development, Alcorn finally assembled a prototype of the game. In September 1972, Bushnell 
+        and Alcorn installed the Pong prototype at a local bar, Andy Capp\'s Tavern. Bushnell and Alcorn placed the 
+        prototype on one of the tables near the other entertainment machines: a jukebox, pinball machines, and Computer Space.
+        The game was well received the first night and its popularity continued to grow over the next one and a 
+        half weeks. Bushnell then went on a business trip to Chicago. A few days later, the prototype began 
+        exhibiting complications and Gattis contacted Alcorn to fix it. Upon inspecting the machine, Alcorn 
+        discovered the mechanisms had jammed from an overflow of quarters.
+    </string>
+    
+    <string name="last_pong">
+        For further information, please the wiki page: &lt;a href="http://en.wikipedia.org/wiki/Pong">Pong&lt;/a>.
+    </string>
 </resources>
