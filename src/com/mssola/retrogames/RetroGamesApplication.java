@@ -18,40 +18,26 @@
 
 package com.mssola.retrogames;
 
+import com.mssola.helpers.Settings;
+import com.mssola.helpers.Statistics;
 import android.app.Application;
 
 
 /**
  * The application for this Android app. It extends the android.app.Application
- * class in order to implement global settings.
+ * class in order to implement global settings and statistics.
  */
 public class RetroGamesApplication extends Application
 {
+	/**
+	 * The singleton Settings instance. 
+	 */
+    private Settings settings;
+    
     /**
-     * Stores the level of difficulty.
+     * The singleton Statistics instance.
      */
-    private int level;
-
-    /**
-     * How many balls in the Pong game will be used.
-     */
-    private int balls;
-
-    /**
-     * Stores if the balls can suddenly change their directions in
-     * the Pong game.
-     */
-    private boolean sudden;
-
-    /**
-     * The invaders can shoot the user in the Space Invaders game.
-     */
-    private boolean attacked;
-
-    /**
-     * The user controls the invader team in the Space Invaders game.
-     */
-    private boolean invader;
+    private Statistics stats;
 
     /**
      * Constructor.
@@ -60,90 +46,23 @@ public class RetroGamesApplication extends Application
     public RetroGamesApplication()
     {
         super();
-        this.level = 1;
-        this.balls = 1;
-        this.sudden = false;
-        this.attacked = false;
-        this.invader = false;
+        this.settings = new Settings();
+        this.stats = new Statistics();
     }
 
     /**
-     * @return the difficulty level.
+     * @return The Settings singleton instance. 
      */
-    public int getLevel()
+    public Settings getSettings()
     {
-        return this.level;
+    	return this.settings;
     }
 
     /**
-     * @param level The new level of difficulty.
+     * @return The Statistics singleton instance. 
      */
-    public void setLevel(int level)
+    public Statistics getStatistics()
     {
-        this.level = level;
-    }
-
-    /**
-     * @return the balls being used.
-     */
-    public int getBalls()
-    {
-        return this.balls;
-    }
-
-    /**
-     * @param balls the number of balls to be used.
-     */
-    public void setBalls(int balls)
-    {
-        this.balls = balls;
-    }
-
-    /**
-     * @return if balls can change its directions all the sudden.
-     */
-    public boolean getSudden()
-    {
-        return this.sudden;
-    }
-
-    /**
-     * @param sudden set if balls can change its directions all the sudden.
-     */
-    public void setSudden(boolean sudden)
-    {
-        this.sudden = sudden;
-    }
-
-    /**
-     * @return if the invaders can shoot to the user.
-     */
-    public boolean getAttacked()
-    {
-        return this.attacked;
-    }
-
-    /**
-     * @param attacked set if the invaders can shoot to the user.
-     */
-    public void setAttacked(boolean attacked)
-    {
-        this.attacked = attacked;
-    }
-
-    /**
-     * @return if the user controls the invader team.
-     */
-    public boolean getInvader()
-    {
-        return this.invader;
-    }
-
-    /**
-     * @param invader set if the user controls the invader team.
-     */
-    public void setInvader(boolean invader)
-    {
-        this.invader = invader;
+    	return this.stats;
     }
 }

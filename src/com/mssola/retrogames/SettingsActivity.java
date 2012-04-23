@@ -18,6 +18,8 @@
 
 package com.mssola.retrogames;
 
+import com.mssola.helpers.Settings;
+
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
@@ -71,15 +73,16 @@ implements RadioGroup.OnCheckedChangeListener, CompoundButton.OnCheckedChangeLis
     public void onCheckedChanged(RadioGroup group, int id)
     {
         RetroGamesApplication app = (RetroGamesApplication) getApplicationContext();
+        Settings s = app.getSettings();
         switch (id) {
         case R.id.radio0:
-            app.setLevel(1);
+            s.setLevel(1);
             break;
         case R.id.radio1:
-            app.setLevel(2);
+            s.setLevel(2);
             break;
         case R.id.radio2:
-            app.setLevel(3);
+            s.setLevel(3);
             break;
         }
     }
@@ -90,15 +93,16 @@ implements RadioGroup.OnCheckedChangeListener, CompoundButton.OnCheckedChangeLis
     public void onCheckedChanged(CompoundButton bttn, boolean isChecked)
     {
         RetroGamesApplication app = (RetroGamesApplication) getApplicationContext();
+        Settings s = app.getSettings();
         switch (bttn.getId()) {
         case R.id.checkBox1:
-            app.setAttacked(isChecked);
+            s.setAttacked(isChecked);
             break;
         case R.id.checkBox2:
-            app.setInvader(isChecked);
+            s.setInvader(isChecked);
             break;
         case R.id.checkBox3:
-            app.setAttacked(isChecked);
+            s.setAttacked(isChecked);
             break;
         }
     }
@@ -109,7 +113,8 @@ implements RadioGroup.OnCheckedChangeListener, CompoundButton.OnCheckedChangeLis
     public void onItemSelected(AdapterView<?> parent, View view, int pos, long id)
     {
         RetroGamesApplication app = (RetroGamesApplication) getApplicationContext();
-        app.setBalls(pos + 1);
+        Settings s = app.getSettings();
+        s.setBalls(pos + 1);
     }
 
     /**
