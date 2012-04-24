@@ -19,30 +19,18 @@
 package com.mssola.retrogames;
 
 import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
-import android.view.View.OnClickListener;
-import android.widget.Button;
 
 
 /**
  * The Activity for the Games tab.
  */
-public class GamesActivity extends Activity
+public class PongActivity extends Activity
 {
     @Override
     public void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.games);
-        
-        Button bttn1 = (Button) findViewById(R.id.button1);
-        bttn1.setOnClickListener(new OnClickListener() {
-			public void onClick(View v) {
-				Intent intent = new Intent(getApplicationContext(), PongActivity.class);
-				startActivity(intent);
-			}
-		});
+        setContentView(R.layout.pong);
     }
 }
