@@ -29,9 +29,9 @@ import android.app.Application;
  */
 public class RetroGamesApplication extends Application
 {
-	/**
-	 * The singleton Settings instance. 
-	 */
+    /**
+     * The singleton Settings instance. 
+     */
     private Settings settings;
     
     /**

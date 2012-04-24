@@ -26,9 +26,9 @@ import android.os.Bundle;
  */
 public class HistoryActivity extends RGTabActivity
 {
-	/**
-	 * On create setup the tabs from the bottom. 
-	 */
+    /**
+     * On create setup the tabs from the bottom. 
+     */
     @Override
     public void onCreate(Bundle savedInstanceState)
     {

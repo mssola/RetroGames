@@ -63,6 +63,47 @@
     </string>
     
     <string name="last_pong">
-        For further information, please the wiki page: &lt;a href="http://en.wikipedia.org/wiki/Pong">Pong&lt;/a>.
+        For further information, please go to the wiki page: &lt;a href="http://en.wikipedia.org/wiki/Pong">Pong&lt;/a>.
+    </string>
+    
+    <string name="first_si">
+      Space Invaders is an arcade video game designed by &lt;a href="http://en.wikipedia.org/wiki/Tomohiro_Nishikado">Tomohiro Nishikado&lt;/a>
+      and released in 1978. Space Invaders is a two-dimensional fixed shooter game in which the player controls a 
+      laser cannon by moving it horizontally across the bottom of the screen and firing at descending aliens. 
+      The aim is to defeat five rows of eleven aliens—some versions feature different numbers—that move horizontally 
+      back and forth across the screen as they advance towards the bottom of the screen. The player defeats an 
+      alien, and earns points, by shooting it with the laser cannon. As more aliens are defeated, the aliens' 
+      movement and the game's music both speed up. Defeating the aliens brings another wave that is more difficult, a loop 
+      which can continue indefinitely. The aliens attempt to destroy the cannon by firing at it while they approach the bottom
+      of the screen. If they reach the bottom, the alien invasion is successful and the game ends. A special "mystery ship" 
+      will occasionally move across the top of the screen and award bonus points if destroyed. The laser cannon is 
+      partially protected by several stationary defense bunkers—the number varies by version—that are gradually 
+      destroyed by projectiles from the aliens and player.
+    </string>
+    
+    <string name="second_si">
+       Tomohiro spent a year designing the game and developing the necessary hardware to produce it. He aimed to create a shooting
+       game that featured the same sense of achievement from completing stages and destroying targets, but with more complex graphics.
+       Nishikado used a similar layout to that of Breakout, but altered the game mechanics. Rather than bounce a ball to attack static
+       objects, players are given the ability to fire projectiles at their own discretion to attack moving enemies.
+       Early enemy designs included tanks, combat planes, and battleships. Nishikado, however, was not satisfied with the enemy movements; 
+       technical limitations made it difficult to simulate flying. Humans would have been easier to simulate, but Nishikado
+       considered shooting them immoral
+    </string>
+    
+    <string name="third_si">
+      Because microcomputers in Japan were not powerful enough at the time to perform the complex tasks involved in designing and programming 
+      Space Invaders, Nishikado had to design his own custom hardware and development tools for the game.[5][9] He created the arcade board 
+      using new microprocessors from the United States. The game uses an Intel 8080 central processing unit, and features raster graphics 
+      on a CRT monitor and monaural sound hosted by a combination of analogue circuitry and a Texas Instruments SN76477 sound chip.
+      Despite the specially developed hardware, Nishikado was unable to program the game as he wanted—the Control Program board was not 
+      powerful enough to display the graphics in color or move the enemies faster—and he considered the development of the hardware the most 
+      difficult part of the whole process. While programming the game, Nishikado discovered that the processor was able to render the alien 
+      graphics faster the fewer were on screen. Rather than design the game to compensate for the speed increase, he decided to keep it as a 
+      challenging gameplay mechanic.
+    </string>
+    
+    <string name="last_si">
+        For further information, please go to the wiki page: &lt;a href="http://en.wikipedia.org/wiki/Space_Invaders">Space Invaders&lt;/a>.
     </string>
 </resources>

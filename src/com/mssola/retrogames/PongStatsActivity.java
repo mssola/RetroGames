@@ -27,9 +27,9 @@ import android.os.Bundle;
  */
 public class PongStatsActivity extends Activity
 {
-	/**
-	 * On create show the Space Invaders History view. 
-	 */
+    /**
+     * On create show the Space Invaders History view. 
+     */
     @Override
     public void onCreate(Bundle savedInstanceState)
     {

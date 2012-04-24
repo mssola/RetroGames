@@ -30,19 +30,19 @@ import android.widget.TextView;
  */
 public class SIHistoryActivity extends Activity
 {
-	/**
-	 * On create show the Space Invaders History view. 
-	 */
+    /**
+     * On create show the Space Invaders History view. 
+     */
     @Override
     public void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);        
         TextView view = new TextView(this);
-        String text = getResources().getString(R.string.first_pong);
+        String text = getResources().getString(R.string.first_si);
         text += getResources().getString(R.string.eol);
-        text += getResources().getString(R.string.second_pong);
+        text += getResources().getString(R.string.second_si);
         text += getResources().getString(R.string.eol);
-        text += getResources().getString(R.string.third_pong);
+        text += getResources().getString(R.string.third_si);
         text += getResources().getString(R.string.eol);
         text += getResources().getString(R.string.last_pong);
         view.setMovementMethod(LinkMovementMethod.getInstance());

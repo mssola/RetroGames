@@ -26,9 +26,9 @@ import android.os.Bundle;
  */
 public class RetroGamesActivity extends RGTabActivity
 {
-	/**
-	 * onCreate setup the main tabs.
-	 */
+    /**
+     * onCreate setup the main tabs.
+     */
     @Override
     public void onCreate(Bundle savedInstanceState)
     {

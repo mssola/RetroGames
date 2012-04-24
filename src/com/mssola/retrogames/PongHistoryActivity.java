@@ -31,9 +31,9 @@ import android.widget.TextView;
  */
 public class PongHistoryActivity extends Activity
 {
-	/**
-	 * On create show the Pong History view. 
-	 */
+    /**
+     * On create show the Pong History view. 
+     */
     @Override
     public void onCreate(Bundle savedInstanceState)
     {
