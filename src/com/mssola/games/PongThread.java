@@ -1,3 +1,19 @@
+/*
+ * Copyright 2012 Miquel Sabaté <mikisabate@gmail.com>
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU Library General Public License as
+ * published by the Free Software Foundation; either version 3 of the
+ * License, or (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
 
 
 package com.mssola.games;
@@ -9,34 +25,32 @@ import android.os.Handler;
 import android.view.SurfaceHolder;
 
 
-
-public class PongThread extends Thread {
-
-/** Handle to the surface manager object we interact with */
-private SurfaceHolder _surfaceHolder;
-private Paint _paint;
-private PongState _state;
-
-public PongThread(SurfaceHolder surfaceHolder, Context context, Handler handler)
+public class PongThread extends Thread
 {
-_surfaceHolder = surfaceHolder;
-_paint = new Paint();
-_state = new PongState();
-}
-
-@Override
-public void run() {
-while(true)
-{
-Canvas canvas = _surfaceHolder.lockCanvas();
-_state.update();
-_state.draw(canvas,_paint);
-_surfaceHolder.unlockCanvasAndPost(canvas);
-}
-}
-
-public PongState getGameState()
-{
-return _state;
-}
+    private SurfaceHolder _surfaceHolder;
+    private Paint _paint;
+    private PongState _state;
+	
+    public PongThread(SurfaceHolder surfaceHolder, Context context, Handler handler)
+    {
+        _surfaceHolder = surfaceHolder;
+        _paint = new Paint();
+        _state = new PongState();
+    }
+	
+    @Override
+    public void run()
+    {
+        while(true) {
+            Canvas canvas = _surfaceHolder.lockCanvas();
+            _state.update();
+            _state.draw(canvas,_paint);
+            _surfaceHolder.unlockCanvasAndPost(canvas);
+        }
+    }
+	
+    public PongState getGameState()
+    {
+        return _state;
+    }
 }
