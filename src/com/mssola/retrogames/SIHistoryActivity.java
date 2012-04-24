@@ -20,6 +20,9 @@ package com.mssola.retrogames;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.text.Html;
+import android.text.method.LinkMovementMethod;
+import android.widget.TextView;
 
 
 /**
@@ -33,7 +36,17 @@ public class SIHistoryActivity extends Activity
     @Override
     public void onCreate(Bundle savedInstanceState)
     {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.si_history);
+        super.onCreate(savedInstanceState);        
+        TextView view = new TextView(this);
+        String text = getResources().getString(R.string.first_pong);
+        text += getResources().getString(R.string.eol);
+        text += getResources().getString(R.string.second_pong);
+        text += getResources().getString(R.string.eol);
+        text += getResources().getString(R.string.third_pong);
+        text += getResources().getString(R.string.eol);
+        text += getResources().getString(R.string.last_pong);
+        view.setMovementMethod(LinkMovementMethod.getInstance());
+        view.setText(Html.fromHtml(text));
+        setContentView(view);
     }
 }
