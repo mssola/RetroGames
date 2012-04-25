@@ -27,12 +27,18 @@ import android.util.DisplayMetrics;
 import android.view.SurfaceHolder;
 
 
+/**
+ * The game thread.
+ */
 public class PongThread extends Thread
 {
     private SurfaceHolder _surfaceHolder;
     private Paint _paint;
     private PongState _state;
 	
+    /**
+     * Constructor.
+     */
     public PongThread(SurfaceHolder surfaceHolder, Context context, Handler handler)
     {
         _surfaceHolder = surfaceHolder;
@@ -44,6 +50,9 @@ public class PongThread extends Thread
         _state = new PongState(height, width, app);
     }
 	
+    /**
+     * The run method. Take care of the drawing and update the game.
+     */
     @Override
     public void run()
     {
@@ -55,6 +64,9 @@ public class PongThread extends Thread
         }
     }
 	
+    /**
+     * @return the current game state.
+     */
     public PongState getGameState()
     {
         return _state;

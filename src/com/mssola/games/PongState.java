@@ -18,18 +18,20 @@
 
 package com.mssola.games;
 
-import java.util.Timer;
-import java.util.TimerTask;
-
 import com.mssola.helpers.Settings;
 import com.mssola.helpers.Statistics;
 import com.mssola.retrogames.RetroGamesApplication;
+import java.util.Timer;
+import java.util.TimerTask;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Rect;
 
 
+/**
+ * Handles the logic of the Pong game.
+ */
 public class PongState
 {
     /* Screen width and height */
@@ -46,12 +48,16 @@ public class PongState
     boolean last;
     int noise = 4;
     
+    /* Others */
     Settings _settings;
     Statistics _stats;
     PongSprite[] _balls;
     PongEnemy _enemy;
 
 
+    /**
+     * Constructor.
+     */
     public PongState(int height, int width, RetroGamesApplication app)
     {
         _screenHeight = height;
@@ -82,7 +88,10 @@ public class PongState
         }
     }
 
-    //The update method
+    /**
+     * The update method. Update the positions of the balls and the position
+     * of the enemy.
+     */
     public void update()
     {
     	for (int i = 0; i < _balls.length; i++) {
@@ -98,6 +107,10 @@ public class PongState
     	_enemy.next_move();
     }
     
+    /**
+     * Accelerate the user's bat.
+     * @param accc The given acceleration (from the accelerometer).
+     */
     public void accelerateX(float accx)
     {
     	if (accx > 0 && accx < noise && !last)
@@ -113,6 +126,9 @@ public class PongState
     	}
     }
 
+    /**
+     * Draw the scenario.
+     */
     public void draw(Canvas canvas, Paint paint)
     {
     	/* Refresh the display */
