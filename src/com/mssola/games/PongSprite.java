@@ -9,7 +9,7 @@ import android.graphics.Rect;
 public class PongSprite extends Sprite
 {
 	public int _vx, _vy;
-	private int _height, _width, _goal;
+	private int _height, _width, _goal, _lives;
 
 	public PongSprite(int v, int height, int width, int size)
 	{
@@ -19,6 +19,7 @@ public class PongSprite extends Sprite
 		_size = size;
 		new_posx();
 		_posy = height / 2;
+		_lives = 3;
 	}
 
 	public void update()
@@ -27,13 +28,19 @@ public class PongSprite extends Sprite
 		_posy += _vy;
 		_goal = 0;
 		if (_posy > _height) {
-			new_posx();
-			_posy = _height / 2;
+			--_lives;
 			_goal = 1;
+			if (_lives > 0) {
+				new_posx();
+				_posy = _height / 2;
+			}
 		} else if (_posy < 0) {
-			new_posx();
-			_posy = _height / 2;
+			--_lives;
 			_goal = -1;
+			if (_lives > 0) {
+				new_posx();
+				_posy = _height / 2;
+			}
 		}
 	}
 	

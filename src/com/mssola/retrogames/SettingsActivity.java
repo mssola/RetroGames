@@ -102,7 +102,7 @@ implements RadioGroup.OnCheckedChangeListener, CompoundButton.OnCheckedChangeLis
             s.setInvader(isChecked);
             break;
         case R.id.checkBox3:
-            s.setAttacked(isChecked);
+            s.setSudden(isChecked);
             break;
         }
     }
