@@ -22,6 +22,7 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.os.Handler;
+import android.util.DisplayMetrics;
 import android.view.SurfaceHolder;
 
 
@@ -35,7 +36,10 @@ public class PongThread extends Thread
     {
         _surfaceHolder = surfaceHolder;
         _paint = new Paint();
-        _state = new PongState();
+        DisplayMetrics displaymetrics = context.getResources().getDisplayMetrics();
+        int height = displaymetrics.heightPixels;
+        int width = displaymetrics.widthPixels;
+        _state = new PongState(height, width);
     }
 	
     @Override

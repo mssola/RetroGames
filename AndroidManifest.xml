@@ -29,7 +29,7 @@
         <activity android:name=".SIHistoryActivity"></activity>
         <activity android:name=".PongStatsActivity"></activity>
         <activity android:name=".SIStatsActivity"></activity>
-        <activity android:name=".PongActivity"></activity>
+        <activity android:name=".PongActivity" android:theme="@android:style/Theme.NoTitleBar.Fullscreen"></activity>
     </application>
 
 </manifest>

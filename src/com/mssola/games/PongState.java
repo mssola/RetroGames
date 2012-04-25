@@ -19,6 +19,7 @@
 package com.mssola.games;
 
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Rect;
 import android.view.KeyEvent;
@@ -27,26 +28,37 @@ import android.view.KeyEvent;
 public class PongState
 {
     //screen width and height
-    final int _screenWidth = 300;
-    final int _screenHeight = 420;
+    int _screenWidth;
+    int _screenHeight;
 
     //The ball
     final int _ballSize = 10;
-    int _ballX = 100;       int _ballY = 100;
-    int _ballVelocityX = 3;         int _ballVelocityY = 3;
+    int _ballX, _ballY;
+    int _ballVelocityX = 3;
+    int _ballVelocityY = 3;
 
     //The bats
-    final int _batLength = 75;      final int _batHeight = 10;
-    int _topBatX = (_screenWidth/2) - (_batLength / 2);
-    final int _topBatY = 20;
-    int _bottomBatX = (_screenWidth/2) - (_batLength / 2);
-    final int _bottomBatY = 400;
-    final int _batSpeed = 3;
+    int _batLength = 75;
+    int _batHeight = 10;
+    int _batSpeed = 7;
+    int _topBatX, _topBatY;
+    int _bottomBatX, _bottomBatY;
+    
+    boolean last;
+    int noise = 4;
 
 
-    public PongState()
+    public PongState(int height, int width)
     {
-        // TODO
+        _screenHeight = height;
+        _screenWidth = width;
+        _topBatX = (_screenWidth/2) - (_batLength / 2);
+        _topBatY = 20;
+        _bottomBatX = (_screenWidth/2) - (_batLength / 2);
+        _bottomBatY = _screenHeight - 20;
+        _ballX = _screenWidth / 2;
+        _ballY = _screenHeight / 2;
+        last = false;
     }
 
     //The update method
@@ -55,47 +67,47 @@ public class PongState
         _ballX += _ballVelocityX;
         _ballY += _ballVelocityY;
 
-        //DEATH!
-        if(_ballY > _screenHeight || _ballY < 0)
-        {_ballX = 100;  _ballY = 100;}          //Collisions with the sides
+        if(_ballY > _screenHeight || _ballY < 0) {
+            _ballX = _screenWidth / 2;
+            _ballY = _screenHeight / 2;        
+        }
 
         if(_ballX > _screenWidth || _ballX < 0)
-                        _ballVelocityX *= -1;   //Collisions with the bats
+            _ballVelocityX *= -1;
 
         if(_ballX > _topBatX && _ballX < _topBatX+_batLength && _ballY < _topBatY)
-                        _ballVelocityY *= -1;  //Collisions with the bats
+            _ballVelocityY *= -1;
 
-        if(_ballX > _bottomBatX && _ballX < _bottomBatX+_batLength
-                        && _ballY > _bottomBatY)
-                              _ballVelocityY *= -1;
+        if(_ballX > _bottomBatX && _ballX < _bottomBatX+_batLength && _ballY > _bottomBatY)
+          _ballVelocityY *= -1;
     }
-
-    public boolean keyPressed(int keyCode, KeyEvent msg)
+    
+    public void accelerateX(float accx)
     {
-        if(keyCode == KeyEvent.KEYCODE_DPAD_LEFT) {
-            _topBatX += _batSpeed; _bottomBatX -= _batSpeed;
-        }
-
-        if (keyCode == KeyEvent.KEYCODE_DPAD_RIGHT) {
-            _topBatX -= _batSpeed; _bottomBatX += _batSpeed;
-        }
-        return true;
+    	if (accx > 0 && accx < noise && !last)
+    		accx = -1;
+    	else if (accx < 0 && accx > -noise && last)
+    		accx = 1;
+    	if (accx > 0) {
+    		_bottomBatX -= _batSpeed;
+    		last = true;
+    	} else if (accx < 0) {
+    		_bottomBatX += _batSpeed;
+    		last = false;
+    	}
     }
 
-    //the draw method
     public void draw(Canvas canvas, Paint paint)
     {
-        //Clear the screen
         canvas.drawRGB(20, 20, 20);
-
-        //set the colour
         paint.setARGB(200, 0, 200, 0);
+        paint.setColor(Color.rgb(255, 255, 255));
 
-        //draw the ball
+        /* draw the ball */
         canvas.drawRect(new Rect(_ballX,_ballY,_ballX + _ballSize,_ballY + _ballSize),
                                     paint);
 
-        //draw the bats
+        /* draw the bats */
         canvas.drawRect(new Rect(_topBatX, _topBatY, _topBatX + _batLength,
                                               _topBatY + _batHeight), paint); //top bat
         canvas.drawRect(new Rect(_bottomBatX, _bottomBatY, _bottomBatX + _batLength,
