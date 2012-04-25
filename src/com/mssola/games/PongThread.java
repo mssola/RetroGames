@@ -18,6 +18,7 @@
 
 package com.mssola.games;
 
+import com.mssola.retrogames.RetroGamesApplication;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Paint;
@@ -39,7 +40,8 @@ public class PongThread extends Thread
         DisplayMetrics displaymetrics = context.getResources().getDisplayMetrics();
         int height = displaymetrics.heightPixels;
         int width = displaymetrics.widthPixels;
-        _state = new PongState(height, width);
+        RetroGamesApplication app = (RetroGamesApplication) context.getApplicationContext();
+        _state = new PongState(height, width, app);
     }
 	
     @Override

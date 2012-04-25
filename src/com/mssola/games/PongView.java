@@ -25,9 +25,6 @@ import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.os.Handler;
 import android.util.AttributeSet;
-import android.util.DisplayMetrics;
-import android.util.Log;
-import android.view.KeyEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 
@@ -52,7 +49,6 @@ public class PongView extends SurfaceView  implements SurfaceHolder.Callback, Se
         SurfaceHolder holder = getHolder();
         holder.addCallback(this);
         setFocusable(true); 
-
         //and instantiate the thread
         _thread = new PongThread(holder, context, new Handler());
     }  
