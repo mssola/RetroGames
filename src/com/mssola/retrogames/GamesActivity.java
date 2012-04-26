@@ -31,16 +31,29 @@ import android.widget.Button;
  */
 public class GamesActivity extends Activity
 {
+	/**
+	 * On create setup two buttons to access to the available games.
+	 */
     @Override
     public void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.games);
         
+        /* The button to select the Pong game */
         Button bttn1 = (Button) findViewById(R.id.button1);
         bttn1.setOnClickListener(new OnClickListener() {
 			public void onClick(View v) {
 				Intent intent = new Intent(getApplicationContext(), PongActivity.class);
+				startActivity(intent);
+			}
+		});
+        
+        /* The button to select the Space Invaders game */
+        Button bttn2 = (Button) findViewById(R.id.button2);
+        bttn2.setOnClickListener(new OnClickListener() {
+			public void onClick(View v) {
+				Intent intent = new Intent(getApplicationContext(), SIActivity.class);
 				startActivity(intent);
 			}
 		});

@@ -29,6 +29,9 @@ import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 
 
+/**
+ * The view for the Pong game.
+ */
 public class PongView extends SurfaceView implements SurfaceHolder.Callback, SensorEventListener
 {
     private PongThread _thread;
@@ -36,30 +39,32 @@ public class PongView extends SurfaceView implements SurfaceHolder.Callback, Sen
     private SensorManager mSensorManager;
     private Sensor mAccelerometer;
 
+    /**
+     * Constructor.
+     */
     public PongView(Context context, AttributeSet attrs)
     {
         super(context, attrs);
         
+        /* Take care of the accelerometer instance */
         _ctx = context;
         mSensorManager = (SensorManager) _ctx.getSystemService(Context.SENSOR_SERVICE);
         mAccelerometer = mSensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
         mSensorManager.registerListener(this, mAccelerometer, SensorManager.SENSOR_DELAY_NORMAL);
 
-    	//So we can listen for events...
+    	/* So we can listen for events */
         SurfaceHolder holder = getHolder();
         holder.addCallback(this);
         setFocusable(true); 
-        //and instantiate the thread
-        _thread = new PongThread(holder, context, new Handler());
-    }  
-
-    //Implemented as part of the SurfaceHolder.Callback interface
-	public void surfaceChanged(SurfaceHolder holder, int format, int width, int height) 
-    {
-		//Mandatory, just swallowing it for this example
     }
 
-    //Implemented as part of the SurfaceHolder.Callback interface
+    /* Implemented as part of the SurfaceHolder.Callback interface */
+	public void surfaceChanged(SurfaceHolder holder, int format, int width, int height) 
+    {
+		/* There's nothing to do here */
+    }
+
+    /* When the surface gets created, launch a brand new Pong thread. */
 	public void surfaceCreated(SurfaceHolder holder)
     {
 		_thread = new PongThread(holder, _ctx, new Handler());
@@ -67,7 +72,7 @@ public class PongView extends SurfaceView implements SurfaceHolder.Callback, Sen
 		_thread.start();
     }
 
-    //Implemented as part of the SurfaceHolder.Callback interface
+    /* When the surface gets destroyed, join the thread. */
 	public void surfaceDestroyed(SurfaceHolder holder)
     {
         boolean retry = true;
@@ -77,28 +82,32 @@ public class PongView extends SurfaceView implements SurfaceHolder.Callback, Sen
                 _thread.join();
                 retry = false;
             } catch (InterruptedException e) {
-                // we will try it again and again...
+                /* If we reach here, it means that we're fucked */
             }
         }
     }
 
+	/* On resume register the accelerometer */
 	protected void onResume()
 	{
 		mSensorManager.registerListener(this, mAccelerometer, SensorManager.SENSOR_DELAY_NORMAL);
 		_thread.start();
 	}
 
+	/* On pause unregister the accelerometer */
 	protected void onPause()
 	{
 		mSensorManager.unregisterListener(this);
 		_thread.stop();
 	}
 	
+	/* Implemented as part of the SensorEventListener interface */
 	public void onAccuracyChanged(Sensor sensor, int accuracy)
 	{
 		/* There's nothing to do here */
 	}
 	
+	/* On sensor changed, accelerate the bat. */
 	public void onSensorChanged(SensorEvent sensorEvent)
 	{
         if (sensorEvent.sensor.getType() == Sensor.TYPE_ACCELEROMETER) {
