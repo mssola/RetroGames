@@ -35,6 +35,7 @@ public class PongThread extends Thread
     private SurfaceHolder _surfaceHolder;
     private Paint _paint;
     private PongState _state;
+    static private boolean _running;
 	
     /**
      * Constructor.
@@ -56,7 +57,7 @@ public class PongThread extends Thread
     @Override
     public void run()
     {
-        while(true) {
+        while(_running) {
             Canvas canvas = _surfaceHolder.lockCanvas();
             _state.update();
             _state.draw(canvas,_paint);
@@ -70,5 +71,15 @@ public class PongThread extends Thread
     public PongState getGameState()
     {
         return _state;
+    }
+    
+    public void setRunning(boolean running)
+    {
+    	_running = running;
+    }
+    
+    public boolean getRunning()
+    {
+    	return _running;
     }
 }

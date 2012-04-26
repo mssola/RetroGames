@@ -29,7 +29,7 @@ import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 
 
-public class PongView extends SurfaceView  implements SurfaceHolder.Callback, SensorEventListener
+public class PongView extends SurfaceView implements SurfaceHolder.Callback, SensorEventListener
 {
     private PongThread _thread;
     private Context _ctx;
@@ -62,32 +62,41 @@ public class PongView extends SurfaceView  implements SurfaceHolder.Callback, Se
     //Implemented as part of the SurfaceHolder.Callback interface
 	public void surfaceCreated(SurfaceHolder holder)
     {
+		_thread = new PongThread(holder, _ctx, new Handler());
+		_thread.setRunning(true);
 		_thread.start();
     }
 
     //Implemented as part of the SurfaceHolder.Callback interface
 	public void surfaceDestroyed(SurfaceHolder holder)
     {
-        _thread.stop();
+        boolean retry = true;
+        _thread.setRunning(false);
+        while (retry) {
+            try {
+                _thread.join();
+                retry = false;
+            } catch (InterruptedException e) {
+                // we will try it again and again...
+            }
+        }
     }
 
 	protected void onResume()
 	{
-//		super.onResume();
 		mSensorManager.registerListener(this, mAccelerometer, SensorManager.SENSOR_DELAY_NORMAL);
 		_thread.start();
 	}
 
 	protected void onPause()
 	{
-//		super.onPause();
 		mSensorManager.unregisterListener(this);
 		_thread.stop();
 	}
 	
 	public void onAccuracyChanged(Sensor sensor, int accuracy)
 	{
-		// TODO Auto-generated method stub	
+		/* There's nothing to do here */
 	}
 	
 	public void onSensorChanged(SensorEvent sensorEvent)
@@ -95,9 +104,5 @@ public class PongView extends SurfaceView  implements SurfaceHolder.Callback, Se
         if (sensorEvent.sensor.getType() == Sensor.TYPE_ACCELEROMETER) {
         	_thread.getGameState().accelerateX(sensorEvent.values[0]);
         }
-
-        if (sensorEvent.sensor.getType() == Sensor.TYPE_ORIENTATION) {
-
-        }	
 	}
 }
