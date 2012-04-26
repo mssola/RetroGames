@@ -32,8 +32,6 @@ public class SIView extends SurfaceView implements SurfaceHolder.Callback, Senso
         SurfaceHolder holder = getHolder();
         holder.addCallback(this);
         setFocusable(true); 
-        //and instantiate the thread
-//        _thread = new SIThread(holder, context, new Handler());
     }  
 
     //Implemented as part of the SurfaceHolder.Callback interface
