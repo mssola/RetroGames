@@ -20,17 +20,68 @@ package com.mssola.helpers;
 
 
 /**
- * This class provides the access to the games statistics.
+ * This class provides the access to the games statistics. Note that all
+ * attributes are public. Yes, exactly like good old struct thingies as in C.
  */
 public class Statistics
 {
-	public int winned, lost;
-	public int scores, escores;
-	public int last_scores, last_escores;
+	/* Statistics from the Pong game */
 	
-	public int games, screwed;
-	public int enemies, shots;
+	/**
+	 * How many matches the user has winned.
+	 */
+	public int winned;
 	
+	/**
+	 * How many matches the user has lost.
+	 */
+	public int lost;
+	
+	/**
+	 * How many goals the user has scored.
+	 */
+	public int scores;
+	
+	/**
+	 * How many goals the enemy has scored.
+	 */
+	public int escores;
+	
+	/**
+	 * How many goals the user has scored in its last match.
+	 */
+	public int last_scores;
+	
+	/**
+	 * How many goals the user has scored in its last match.
+	 */
+	public int last_escores;
+	
+	/* Statistics from the Space Invaders game */
+	
+	/**
+	 * How many games the user defended us from the great villains of the space.
+	 */
+	public int games;
+	
+	/**
+	 * Sooo, how many times the invaders kicked our ass.
+	 */
+	public int screwed;
+	
+	/**
+	 * How many enemies the user has killed.
+	 */
+	public int enemies;
+	
+	/**
+	 * How many bullets has the user shot.
+	 */
+	public int shots;
+	
+	/**
+	 * Constructor.
+	 */
 	public Statistics()
 	{
 		winned = 0;

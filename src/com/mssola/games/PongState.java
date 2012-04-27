@@ -18,16 +18,17 @@
 
 package com.mssola.games;
 
+import java.util.Timer;
+import java.util.TimerTask;
+
 import com.mssola.helpers.Settings;
 import com.mssola.helpers.Statistics;
 import com.mssola.retrogames.RetroGamesApplication;
-import java.util.Timer;
-import java.util.TimerTask;
+
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Rect;
-import android.util.Log;
 
 
 /**

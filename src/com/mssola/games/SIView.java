@@ -1,3 +1,20 @@
+/*
+ * Copyright 2012 Miquel Sabaté <mikisabate@gmail.com>
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU Library General Public License as
+ * published by the Free Software Foundation; either version 3 of the
+ * License, or (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
 
 package com.mssola.games;
 
@@ -8,12 +25,14 @@ import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.os.Handler;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 
 
+/**
+ * The view of the Space Invaders game.
+ */
 public class SIView extends SurfaceView implements SurfaceHolder.Callback, SensorEventListener
 {
     private SIThread _thread;
@@ -21,28 +40,32 @@ public class SIView extends SurfaceView implements SurfaceHolder.Callback, Senso
     private SensorManager mSensorManager;
     private Sensor mAccelerometer;
 
+    /**
+     * Constructor.
+     */
     public SIView(Context context, AttributeSet attrs)
     {
         super(context, attrs);
         
+        /* Take care of the accelerometer instance */
         _ctx = context;
         mSensorManager = (SensorManager) _ctx.getSystemService(Context.SENSOR_SERVICE);
         mAccelerometer = mSensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
         mSensorManager.registerListener(this, mAccelerometer, SensorManager.SENSOR_DELAY_NORMAL);
 
-    	//So we can listen for events...
+    	/* So we can listen for events */
         SurfaceHolder holder = getHolder();
         holder.addCallback(this);
         setFocusable(true); 
     }  
 
-    //Implemented as part of the SurfaceHolder.Callback interface
+    /* Implemented as part of the SurfaceHolder.Callback interface */
 	public void surfaceChanged(SurfaceHolder holder, int format, int width, int height) 
     {
-		//Mandatory, just swallowing it for this example
+		/* There's nothing to do here */
     }
 
-    //Implemented as part of the SurfaceHolder.Callback interface
+    /* When the surface gets created, launch a brand new Space Invaders thread. */
 	public void surfaceCreated(SurfaceHolder holder)
     {
 		_thread = new SIThread(holder, _ctx, new Handler());
@@ -50,7 +73,7 @@ public class SIView extends SurfaceView implements SurfaceHolder.Callback, Senso
 		_thread.start();
     }
 
-    //Implemented as part of the SurfaceHolder.Callback interface
+    /* When the surface gets destroyed, join the thread. */
 	public void surfaceDestroyed(SurfaceHolder holder)
     {
         boolean retry = true;
@@ -60,28 +83,32 @@ public class SIView extends SurfaceView implements SurfaceHolder.Callback, Senso
                 _thread.join();
                 retry = false;
             } catch (InterruptedException e) {
-                // we will try it again and again...
+                /* If we reach here, it means that we're fucked */
             }
         }
     }
 
+	/* On resume register the accelerometer */
 	protected void onResume()
 	{
 		mSensorManager.registerListener(this, mAccelerometer, SensorManager.SENSOR_DELAY_NORMAL);
 		_thread.start();
 	}
 
+	/* On pause unregister the accelerometer */
 	protected void onPause()
 	{
 		mSensorManager.unregisterListener(this);
 		_thread.stop();
 	}
 	
+	/* Implemented as part of the SensorEventListener interface */
 	public void onAccuracyChanged(Sensor sensor, int accuracy)
 	{
 		/* There's nothing to do here */
 	}
 	
+	/* On sensor changed, the hero has to move his ass. */
 	public void onSensorChanged(SensorEvent sensorEvent)
 	{
         if (sensorEvent.sensor.getType() == Sensor.TYPE_ACCELEROMETER) {
@@ -89,6 +116,10 @@ public class SIView extends SurfaceView implements SurfaceHolder.Callback, Senso
         }
 	}
 	
+	/**
+	 * The user touched the screen. Therefore, our beloved hero has to
+	 * shoot to the invaders.
+	 */
 	@Override
 	public boolean onTouchEvent(MotionEvent event)
 	{

@@ -1,9 +1,23 @@
+/*
+ * Copyright 2012 Miquel Sabaté <mikisabate@gmail.com>
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU Library General Public License as
+ * published by the Free Software Foundation; either version 3 of the
+ * License, or (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
 
 package com.mssola.games;
 
-import java.util.Timer;
-
-import java.util.TimerTask;
 import com.mssola.helpers.Settings;
 import com.mssola.helpers.Sprite;
 import com.mssola.helpers.Statistics;
@@ -14,20 +28,18 @@ import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
-import android.graphics.Color;
 import android.graphics.Paint;
-import android.graphics.Rect;
 import android.util.DisplayMetrics;
-import android.util.Log;
 
 
+/**
+ * The class that handle the state of the Space Invaders game.
+ */
 public class SIState
 {
     /* Screen width and height */
     int _screenWidth;
     int _screenHeight;
-    
-    Resources _res;
 
     /* Handling some issues around the accelerometer */
     boolean last;
@@ -40,10 +52,14 @@ public class SIState
     
     /* Bunkers */
     Sprite[] bunkers;
+    int n_bunkers;
     
     /* Invaders */
     InvadersMatrix invaders;
     
+    /* Others */
+    Resources _res;
+    Statistics _stats;
     public boolean should_finish;
 
     /**
@@ -56,6 +72,7 @@ public class SIState
         _screenWidth = displaymetrics.widthPixels;
         _res = res;
         last = false;
+        _stats = app.getStatistics();
         
         /* Initialize our hero! */
         int x = _screenWidth - 40;
@@ -71,18 +88,23 @@ public class SIState
         hero_bullet._bitmap = bullet;
         
         /* Setup bunkers */
-        bunkers = new Sprite[2];
+        Settings s = app.getSettings();
+        if (s.getLevel() == 1)
+        	n_bunkers = 2;
+        else if (s.getLevel() == 2)
+        	n_bunkers = 1;
+        bunkers = new Sprite[n_bunkers];
         int padding = (_screenWidth - 160) / 3;
         int ax = 0;
         Bitmap bunker = BitmapFactory.decodeResource(_res, R.drawable.bunker);
-        for (int i = 0; i < 2; i++, ax += 80) {
+        for (int i = 0; i < n_bunkers; i++, ax += 80) {
         	ax += padding;
         	bunkers[i] = new Sprite(ax, y - 90, 80);
         	bunkers[i]._bitmap = bunker;
         }
         
         /* Invaders matrix */
-        invaders = new InvadersMatrix(_screenHeight, _screenWidth, _res);
+        invaders = new InvadersMatrix(_screenHeight, _screenWidth, _res, s.getAttacked());
         
         should_finish = false;
     }
@@ -96,13 +118,20 @@ public class SIState
     	hero_bullet.update();
     	hero_bullet.watch_the_walls(_screenHeight);
     	if (invaders.gotcha(hero_bullet)) {
+    		_stats.enemies++;
     		hero_bullet._valid = false;
     		if (invaders.n_alives == 0)
     			should_finish = true;
     	}
     	invaders.update();
-    	if (invaders.get_bottom() + 35 > _screenHeight - 140)
+    	if (invaders.got_us(hero)) {
     		should_finish = true;
+    		_stats.screwed++;
+    	}
+    	if (invaders.get_bottom() + 35 > _screenHeight - 140) {
+    		should_finish = true;
+    		_stats.screwed++;
+    	}
     }
     
     /**
@@ -124,12 +153,17 @@ public class SIState
     	}
     }
     
+    /**
+     * The hero attempts to shoot. Only one bullet from the hero can be
+     * displayed at the time, like the original game. 
+     */
     public void bangBang()
     {
     	if (!hero_bullet._valid) {
 	    	hero_bullet._posx = hero._posx + (hero._size / 2) - 2;
 	    	hero_bullet._posy = hero._posy;
 	    	hero_bullet._valid = true;
+	    	_stats.shots++;
     	}
     }
 
@@ -144,7 +178,7 @@ public class SIState
         
         invaders.draw(canvas, paint);
         
-        for (int i = 0; i < 2; i++)
+        for (int i = 0; i < n_bunkers; i++)
         	canvas.drawBitmap(bunkers[i]._bitmap, bunkers[i]._posx, bunkers[i]._posy, paint);
         
         if (hero_bullet._valid)

@@ -53,6 +53,12 @@ public class SIStatsActivity extends Activity
         txt.setText(to_s(stats.shots));
     }
     
+    /**
+     * Apparently, Java is a complete mess (not that I'm surprised). Let's 
+     * provide some goodness.
+     * @param n The integer.
+     * @return the integer represented as a string.
+     */
     private String to_s(int n)
     {
     	return new Integer(n).toString();

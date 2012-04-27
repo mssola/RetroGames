@@ -115,6 +115,9 @@ public class PongSprite extends Sprite
 		_posx = r.nextInt(_width - 20);
 	}
 	
+	/**
+	 * Get how many lives has this ball.
+	 */
 	public int get_lives()
 	{
 		return _lives;

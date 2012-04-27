@@ -90,11 +90,18 @@ public class PongThread extends Thread
         return _state;
     }
     
+    /**
+     * Set if this thread running attribute.
+     * @param running The new value for the running attribute.
+     */
     public void setRunning(boolean running)
     {
     	_running = running;
     }
     
+    /**
+     * @return the value of the running attribute.
+     */
     public boolean getRunning()
     {
     	return _running;
