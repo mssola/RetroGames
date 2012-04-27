@@ -4,6 +4,7 @@ package com.mssola.games;
 import com.mssola.retrogames.RetroGamesApplication;
 
 import android.content.Context;
+import android.content.res.Resources;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.os.Handler;
@@ -26,11 +27,9 @@ public class SIThread extends Thread
     {
         _surfaceHolder = surfaceHolder;
         _paint = new Paint();
-        DisplayMetrics displaymetrics = context.getResources().getDisplayMetrics();
-        int height = displaymetrics.heightPixels;
-        int width = displaymetrics.widthPixels;
         RetroGamesApplication app = (RetroGamesApplication) context.getApplicationContext();
-        _state = new SIState(height, width, app);
+        Resources res = context.getResources();
+        _state = new SIState(app, res);
     }
 	
     /**

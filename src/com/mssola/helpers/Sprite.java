@@ -18,6 +18,8 @@
 
 package com.mssola.helpers;
 
+import android.graphics.Bitmap;
+
 
 /**
  * The base class for a widget on a game. 
@@ -25,7 +27,8 @@ package com.mssola.helpers;
 public class Sprite
 {
 	public int _posx, _posy;
-	protected int _size;
+	public Bitmap _bitmap;
+	public int _size;
 	
 	/**
 	 * Constructor.

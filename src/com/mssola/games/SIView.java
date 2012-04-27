@@ -8,6 +8,8 @@ import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.os.Handler;
 import android.util.AttributeSet;
+import android.util.Log;
+import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 
@@ -85,5 +87,12 @@ public class SIView extends SurfaceView implements SurfaceHolder.Callback, Senso
         if (sensorEvent.sensor.getType() == Sensor.TYPE_ACCELEROMETER) {
         	_thread.getGameState().accelerateX(sensorEvent.values[0]);
         }
+	}
+	
+	@Override
+	public boolean onTouchEvent(MotionEvent event)
+	{
+		_thread.getGameState().bangBang();
+		return super.onTouchEvent(event);
 	}
 }

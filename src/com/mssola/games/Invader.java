@@ -6,9 +6,11 @@ import com.mssola.helpers.Sprite;
 
 public class Invader extends Sprite
 {
-	public Invader(int x, int y, int size, int kind)
+	public boolean _valid;
+
+	public Invader(int x, int y)
 	{
-		super(x, y, size);
-		// TODO: kind
+		super(x, y, 41);
+		_valid = true;
 	}
 }
