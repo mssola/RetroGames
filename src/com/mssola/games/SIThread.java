@@ -3,12 +3,14 @@ package com.mssola.games;
 
 import com.mssola.retrogames.RetroGamesApplication;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.os.Handler;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.SurfaceHolder;
 
 
@@ -18,6 +20,7 @@ public class SIThread extends Thread
     private SurfaceHolder _surfaceHolder;
     private Paint _paint;
     private SIState _state;
+    private Activity _act;
     static private boolean _running;
 	
     /**
@@ -27,6 +30,7 @@ public class SIThread extends Thread
     {
         _surfaceHolder = surfaceHolder;
         _paint = new Paint();
+        _act = (Activity) context; 
         RetroGamesApplication app = (RetroGamesApplication) context.getApplicationContext();
         Resources res = context.getResources();
         _state = new SIState(app, res);
@@ -42,6 +46,8 @@ public class SIThread extends Thread
             Canvas canvas = _surfaceHolder.lockCanvas();
             _state.update();
             _state.draw(canvas,_paint);
+            if (_state.should_finish)
+            	_act.finish();
             _surfaceHolder.unlockCanvasAndPost(canvas);
         }
     }

@@ -2,6 +2,7 @@
 package com.mssola.games;
 
 import java.util.Timer;
+
 import java.util.TimerTask;
 import com.mssola.helpers.Settings;
 import com.mssola.helpers.Sprite;
@@ -42,6 +43,8 @@ public class SIState
     
     /* Invaders */
     InvadersMatrix invaders;
+    
+    public boolean should_finish;
 
     /**
      * Constructor.
@@ -55,7 +58,7 @@ public class SIState
         last = false;
         
         /* Initialize our hero! */
-        int x = _screenWidth / 2;
+        int x = _screenWidth - 40;
         int y = _screenHeight - 50;
         hero = new Sprite(x, y, 32);
         Bitmap bitmap = BitmapFactory.decodeResource(_res, R.drawable.hero);
@@ -80,6 +83,8 @@ public class SIState
         
         /* Invaders matrix */
         invaders = new InvadersMatrix(_screenHeight, _screenWidth, _res);
+        
+        should_finish = false;
     }
 
     /**
@@ -90,9 +95,14 @@ public class SIState
     {
     	hero_bullet.update();
     	hero_bullet.watch_the_walls(_screenHeight);
-    	if (invaders.gotcha(hero_bullet))
+    	if (invaders.gotcha(hero_bullet)) {
     		hero_bullet._valid = false;
+    		if (invaders.n_alives == 0)
+    			should_finish = true;
+    	}
     	invaders.update();
+    	if (invaders.get_bottom() + 35 > _screenHeight - 140)
+    		should_finish = true;
     }
     
     /**
@@ -134,11 +144,11 @@ public class SIState
         
         invaders.draw(canvas, paint);
         
-//        for (int i = 0; i < 2; i++)
-//        	canvas.drawBitmap(bunkers[i]._bitmap, bunkers[i]._posx, bunkers[i]._posy, paint);
+        for (int i = 0; i < 2; i++)
+        	canvas.drawBitmap(bunkers[i]._bitmap, bunkers[i]._posx, bunkers[i]._posy, paint);
         
         if (hero_bullet._valid)
-        	canvas.drawBitmap(hero_bullet._bitmap, hero_bullet._posx + 30, hero_bullet._posy, paint);
-    	canvas.drawBitmap(hero._bitmap, hero._posx + 30, hero._posy, paint);
+        	canvas.drawBitmap(hero_bullet._bitmap, hero_bullet._posx, hero_bullet._posy, paint);
+    	canvas.drawBitmap(hero._bitmap, hero._posx, hero._posy, paint);
     }
 }
