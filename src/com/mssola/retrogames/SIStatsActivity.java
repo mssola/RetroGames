@@ -18,8 +18,11 @@
 
 package com.mssola.retrogames;
 
+import com.mssola.helpers.Statistics;
+
 import android.app.Activity;
 import android.os.Bundle;
+import android.widget.TextView;
 
 
 /**
@@ -35,5 +38,23 @@ public class SIStatsActivity extends Activity
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.si_stats);
+
+        Statistics stats = ((RetroGamesApplication) getApplicationContext()).getStatistics();
+        TextView txt = (TextView) findViewById(R.id.defended);
+        txt.setText(to_s(stats.games - stats.screwed));
+        
+        txt = (TextView) findViewById(R.id.invaded);
+        txt.setText(to_s(stats.screwed));
+        
+        txt = (TextView) findViewById(R.id.enemies);
+        txt.setText(to_s(stats.enemies));
+        
+        txt = (TextView) findViewById(R.id.bullets);
+        txt.setText(to_s(stats.shots));
+    }
+    
+    private String to_s(int n)
+    {
+    	return new Integer(n).toString();
     }
 }

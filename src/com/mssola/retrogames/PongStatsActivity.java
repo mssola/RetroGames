@@ -18,8 +18,10 @@
 
 package com.mssola.retrogames;
 
+import com.mssola.helpers.Statistics;
 import android.app.Activity;
 import android.os.Bundle;
+import android.widget.TextView;
 
 
 /**
@@ -35,5 +37,29 @@ public class PongStatsActivity extends Activity
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.pong_stats);
+
+        Statistics stats = ((RetroGamesApplication) getApplicationContext()).getStatistics();
+        TextView txt = (TextView) findViewById(R.id.lala);
+        txt.setText(to_s(stats.winned + stats.lost));
+        
+        txt = (TextView) findViewById(R.id.won);
+        txt.setText(to_s(stats.winned));
+        
+        txt = (TextView) findViewById(R.id.scores);
+        txt.setText(to_s(stats.scores));
+        
+        txt = (TextView) findViewById(R.id.escores);
+        txt.setText(to_s(stats.escores));
+        
+        txt = (TextView) findViewById(R.id.last_scores);
+        txt.setText(to_s(stats.last_scores));
+        
+        txt = (TextView) findViewById(R.id.last_escores);
+        txt.setText(to_s(stats.last_escores));
+    }
+    
+    private String to_s(int n)
+    {
+    	return new Integer(n).toString();
     }
 }

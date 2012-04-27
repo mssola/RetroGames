@@ -27,6 +27,23 @@
         <item>3</item>
     </string-array>
     
+    <string name="pong_stats">Pong Statistics</string>
+    <string name="matches">Total Matches: </string>
+    <string name="won_matches">Won matches: </string>
+    
+    <string name="scored">You\'ve scored: </string>
+    <string name="escored">You\'ve received: </string>
+    
+    <string name="last_scored">Scores from last match: </string>
+    <string name="last_escored">Opponent scores last match: </string>
+    
+    <string name="si_stats">Total Games: </string>
+    <string name="games">Successfully defended: </string>
+    <string name="screwed">Invaded: </string>
+    
+    <string name="enemies">Enemies you\'ve killed: </string>
+    <string name="shots">Bullets shot: </string>
+    
     <string name="eol">&lt;br />&lt;br /></string>
     
     <string name="first_pong">

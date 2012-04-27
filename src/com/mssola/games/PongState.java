@@ -27,6 +27,7 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Rect;
+import android.util.Log;
 
 
 /**
@@ -53,6 +54,7 @@ public class PongState
     Statistics _stats;
     PongSprite[] _balls;
     PongEnemy _enemy;
+    public boolean should_finish;
 
 
     /**
@@ -86,6 +88,9 @@ public class PongState
                 }
             }, 0, 1500);
         }
+        should_finish = false;
+        _stats.last_scores = 0;
+        _stats.last_escores = 0;
     }
 
     /**
@@ -94,15 +99,23 @@ public class PongState
      */
     public void update()
     {
+    	boolean should = true;
     	for (int i = 0; i < _balls.length; i++) {
     		_balls[i].update();
-    		// TODO handle scored
+    		if (_balls[i].scored() == -1)
+    			_stats.last_scores++;
+    		else if (_balls[i].scored() == 1)
+    			_stats.last_escores++;
+    		_balls[i]._goal = 0; 
+    		if (_balls[i].get_lives() > 0)
+    			should = false;
     		_balls[i].change_if_not_between(0, _screenWidth);
     		if (_balls[i].between(_enemy._posx, _batLength) && _balls[i]._posy < _enemy._posy)
     			_balls[i].change();
     		if (_balls[i].between(_bottomBatX, _batLength) && _balls[i]._posy > _bottomBatY)
     			_balls[i].change();
     	}
+		should_finish = should;
     	_enemy.watch_position(_balls[0]._posx);
     	_enemy.next_move();
     }
@@ -137,8 +150,10 @@ public class PongState
         paint.setColor(Color.rgb(255, 255, 255));
 
         /* draw the ball */
-        for (int i = 0; i < _balls.length; i++)
-        	canvas.drawRect(_balls[i].get_sprite(), paint);
+        for (int i = 0; i < _balls.length; i++) {
+        	if (_balls[i].get_lives() > 0)
+        		canvas.drawRect(_balls[i].get_sprite(), paint);
+        }
 
         /* draw the bats */
         canvas.drawRect(new Rect(_enemy._posx, _enemy._posy, _enemy._posx + _batLength,

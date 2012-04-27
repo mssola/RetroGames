@@ -24,8 +24,25 @@ package com.mssola.helpers;
  */
 public class Statistics
 {
+	public int winned, lost;
+	public int scores, escores;
+	public int last_scores, last_escores;
+	
+	public int games, screwed;
+	public int enemies, shots;
+	
 	public Statistics()
 	{
-		// TODO
+		winned = 0;
+		lost = 0;
+		scores = 0;
+		escores = 0;
+		last_scores = 0;
+		last_escores = 0;
+		
+		games = 0;
+		screwed = 0;
+		enemies = 0;
+		shots = 0;
 	}
 }

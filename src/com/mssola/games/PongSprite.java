@@ -28,8 +28,8 @@ import android.graphics.Rect;
  */
 public class PongSprite extends Sprite
 {
-	public int _vx, _vy;
-	private int _height, _width, _goal, _lives;
+	public int _vx, _vy, _goal;
+	private int _height, _width, _lives;
 
 	/**
 	 * Constructor. 
@@ -113,5 +113,10 @@ public class PongSprite extends Sprite
 	{
 		Random r = new Random();
 		_posx = r.nextInt(_width - 20);
+	}
+	
+	public int get_lives()
+	{
+		return _lives;
 	}
 }

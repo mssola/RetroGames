@@ -18,7 +18,10 @@
 
 package com.mssola.games;
 
+import com.mssola.helpers.Statistics;
 import com.mssola.retrogames.RetroGamesApplication;
+
+import android.app.Activity;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Paint;
@@ -36,6 +39,8 @@ public class PongThread extends Thread
     private Paint _paint;
     private PongState _state;
     static private boolean _running;
+    private Activity _act;
+    private Statistics _stats;
 	
     /**
      * Constructor.
@@ -47,7 +52,9 @@ public class PongThread extends Thread
         DisplayMetrics displaymetrics = context.getResources().getDisplayMetrics();
         int height = displaymetrics.heightPixels;
         int width = displaymetrics.widthPixels;
+        _act = (Activity) context;
         RetroGamesApplication app = (RetroGamesApplication) context.getApplicationContext();
+        _stats = app.getStatistics();
         _state = new PongState(height, width, app);
     }
 	
@@ -59,8 +66,18 @@ public class PongThread extends Thread
     {
         while(_running) {
             Canvas canvas = _surfaceHolder.lockCanvas();
-            _state.update();
-            _state.draw(canvas,_paint);
+            if (_state.should_finish) {
+            	_stats.scores += _stats.last_scores;
+            	_stats.escores += _stats.last_escores;
+            	if (_stats.last_scores > _stats.last_escores)
+            		_stats.winned++;
+            	else
+            		_stats.lost++;
+            	_act.finish();
+            } else {
+	            _state.update();
+	            _state.draw(canvas,_paint);
+            }
             _surfaceHolder.unlockCanvasAndPost(canvas);
         }
     }
