@@ -127,6 +127,8 @@ public class SIState
     	if (invaders.got_us(hero)) {
     		should_finish = true;
     		_stats.screwed++;
+    	} else if (invaders.got_blocked(bunkers)) {
+    		invaders.bullet._valid = false;
     	}
     	if (invaders.get_bottom() + 35 > _screenHeight - 140) {
     		should_finish = true;

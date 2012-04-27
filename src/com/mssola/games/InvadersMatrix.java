@@ -34,7 +34,7 @@ import android.graphics.Paint;
 public class InvadersMatrix
 {
 	Invader[] _invaders;
-	Bullet bullet;
+	public Bullet bullet;
 	private static final int ISIZE = 41;
 	public int n_alives;
 	private boolean going_right;
@@ -180,6 +180,18 @@ public class InvadersMatrix
 	{
 		if (bullet._valid)
 			return (bullet.between(h._posx - 10, h._size) && h._posy < bullet._posy);
+		return false;
+	}
+	
+	public boolean got_blocked(Sprite[] bunkers)
+	{
+		if (!bullet._valid)
+			return false;
+
+		for (int i = 0; i < bunkers.length; i++) {
+			if (bullet.between(bunkers[i]._posx, bunkers[i]._size))
+				return (bullet._posy < bunkers[i]._posy);
+		}
 		return false;
 	}
 	
